@@ -1,4 +1,10 @@
-const quizData = [
+type QuizQuestion = {
+    question: string,
+    options: string[],
+    answer: string
+};
+
+const quizData: QuizQuestion[] = [
     {
         question: 'What is the capital of France?',
         options: ['Paris', 'London', 'Berlin', 'Madrid'],
@@ -51,15 +57,19 @@ const quizData = [
     },
 ];
 
-const quizContainer = document.getElementById('quiz');
-const resultContainer = document.getElementById('result');
-const submitButton = document.getElementById('submit');
-const retryButton = document.getElementById('retry');
-const showAnswerButton = document.getElementById('showAnswer');
+const quizContainer: HTMLElement | null = document.getElementById('quiz');
+const resultContainer: HTMLElement | null = document.getElementById('result');
+const submitButton: HTMLElement | null = document.getElementById('submit');
+const retryButton: HTMLElement | null = document.getElementById('retry');
+const showAnswerButton: HTMLElement | null = document.getElementById('showAnswer');
 
-let currentQuestion = 0;
-let score = 0;
-let incorrectAnswers = [];
+let currentQuestion: number = 0;
+let score: number = 0;
+let incorrectAnswers: {
+    question: string,
+    incorrectAnswer: string,
+    correctAnswer: string
+}[] = [];
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
